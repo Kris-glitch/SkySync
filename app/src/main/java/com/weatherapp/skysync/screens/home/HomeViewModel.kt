@@ -1,7 +1,9 @@
 package com.weatherapp.skysync.screens.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.weatherapp.skysync.data.DataOrException
+import com.weatherapp.skysync.model.Astro
 import com.weatherapp.skysync.model.WeatherResponse
 import com.weatherapp.skysync.repository.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +19,7 @@ class HomeViewModel @Inject constructor(
         return weatherRepository.getWeather(city)
 
     }
+
 
 
 }

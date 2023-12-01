@@ -1,5 +1,6 @@
 package com.weatherapp.skysync.network
 
+import com.weatherapp.skysync.model.Astro
 import com.weatherapp.skysync.model.WeatherResponse
 import com.weatherapp.skysync.utils.Constants
 import retrofit2.http.GET
@@ -16,5 +17,7 @@ interface WeatherApi {
         @Query("aqi") aqi: String = "no",
         @Query("alerts") alerts: String = "no",
     ) : WeatherResponse
+
+
 
 }

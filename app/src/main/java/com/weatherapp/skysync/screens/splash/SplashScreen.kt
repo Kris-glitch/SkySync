@@ -3,7 +3,6 @@ package com.weatherapp.skysync.screens.splash
 
 
 import android.view.animation.OvershootInterpolator
-import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -49,7 +48,7 @@ val scale = remember {
                 }
             )
             )
-        delay(2000L)
+        delay(5000L)
 
         navController.navigate(Screens.HomeScreen.name)
     })
@@ -60,7 +59,7 @@ val scale = remember {
         modifier = Modifier
             .fillMaxSize()
             .scale(scale.value),
-        color = Color.White
+        color = Color(0xFF9FC2DA)
     ) {
         Column(
             verticalArrangement = Arrangement.Center,

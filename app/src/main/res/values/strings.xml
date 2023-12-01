@@ -3,4 +3,8 @@
     <string name="splash_image">Moon image</string>
     <string name="slogan">Sync with the sky, stay ahead, come rain or shine</string>
     <string name="back_arrow">Back arrow</string>
+    <string name="search_icon">Search icon</string>
+    <string name="more_icon">More icon</string>
+    <string name="condition">condition</string>
+    <string name="humidity">humidity</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.weatherapp.skysync.repository
 
 import com.weatherapp.skysync.data.DataOrException
+import com.weatherapp.skysync.model.Astro
 import com.weatherapp.skysync.model.WeatherResponse
 import com.weatherapp.skysync.network.WeatherApi
 import javax.inject.Inject
@@ -17,5 +18,7 @@ class WeatherRepository @Inject constructor(
         }
         return DataOrException(response)
     }
+
+
 
 }

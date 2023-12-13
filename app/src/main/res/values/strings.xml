@@ -7,4 +7,7 @@
     <string name="more_icon">More icon</string>
     <string name="condition">condition</string>
     <string name="humidity">humidity</string>
+    <string name="week">Weekly</string>
+    <string name="weather_icon">weather icon</string>
+    <string name="rain_percentage">rain percentage</string>
 </resources>

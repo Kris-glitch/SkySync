@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -52,11 +53,15 @@ import com.weatherapp.skysync.widgets.WeeklyForecastRow
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel(), navController: NavController) {
+fun HomeScreen(
+    homeViewModel: HomeViewModel = hiltViewModel(),
+    navController: NavController,
+    city: String?
+) {
     val weatherData = produceState<DataOrException<WeatherResponse, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
-        value = homeViewModel.getWeatherData(city = "Skopje")
+        value = homeViewModel.getWeatherData(city = city ?: "Skopje")
     }.value
 
 
@@ -88,6 +93,7 @@ fun TopWeatherBar(
                 elevation = 2.dp,
                 enabled = false,
                 isHomeScreen = true,
+                showSearch = true,
                 onBackButtonClicked = {
 
                 },
@@ -96,7 +102,8 @@ fun TopWeatherBar(
                 },
                 onSearchClicked = {
                     navController.navigate(Screens.SearchScreen.name)
-                }
+                },
+                onAction = KeyboardActions.Default
 
             )
         }

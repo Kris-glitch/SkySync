@@ -10,4 +10,34 @@
     <string name="week">Weekly</string>
     <string name="weather_icon">weather icon</string>
     <string name="rain_percentage">rain percentage</string>
+    <string name="about_welcome_title">Welcome to Sky Sync!</string>
+
+    <string name="about_welcome">
+        At Sky Sync, we believe in making weather information not just accessible but delightful.
+        Our mission is to provide you with accurate and up-to-the-minute weather updates,
+        ensuring you are always prepared for whatever Mother Nature has in store.</string>
+    <string name="about_key_features">Key Features:</string>
+    <string name="about_key_features_1">
+        Real-time Weather Updates: Stay ahead of the weather with our real-time forecasts.
+        Whether it iss sunny skies, stormy clouds, or a chance of rain, Sky Sync keeps you in the know.
+        Global Coverage: Wherever you are, we have got you covered. Access weather information for any location worldwide,
+        so you can plan your day, whether it is a local outing or an international adventure.
+    </string>
+    <string name="about_key_features_2">
+        Global Coverage: Wherever you are, we have got you covered. Access weather information for any location worldwide,
+        so you can plan your day, whether it is a local outing or an international adventure.
+    </string>
+    <string name="about_key_features_3">
+        Intuitive Design: Our user-friendly interface makes navigating through weather data a breeze.
+        Elegant visuals and easy-to-understand graphics ensure you get the information you need with just a glance.
+
+    </string>
+    <string name="about_why_title">Why Sky Sync:</string>
+    <string name="about_why">
+        Sky Sync is not just a weather app; it is your reliable weather companion.
+        We are dedicated to delivering a seamless and enjoyable weather experience,
+        helping you make informed decisions and adding a touch of sunshine to your day.
+    </string>
+
+
 </resources>

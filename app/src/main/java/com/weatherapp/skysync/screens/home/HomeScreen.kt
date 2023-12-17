@@ -1,6 +1,7 @@
 package com.weatherapp.skysync.screens.home
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -23,11 +24,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -43,6 +50,8 @@ import com.weatherapp.skysync.R
 import com.weatherapp.skysync.data.DataOrException
 import com.weatherapp.skysync.model.WeatherResponse
 import com.weatherapp.skysync.navigation.Screens
+import com.weatherapp.skysync.screens.favorites.FavoriteViewModel
+import com.weatherapp.skysync.screens.settings.SettingsViewModel
 import com.weatherapp.skysync.utils.CustomImageSet.setBackgroundImage
 import com.weatherapp.skysync.utils.FormattingUtils.formatDate
 import com.weatherapp.skysync.widgets.HumidityPressureRow
@@ -55,6 +64,8 @@ import com.weatherapp.skysync.widgets.WeeklyForecastRow
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel(),
+    favoriteViewModel: FavoriteViewModel = hiltViewModel(),
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
     navController: NavController,
     city: String?
 ) {
@@ -64,14 +75,29 @@ fun HomeScreen(
         value = homeViewModel.getWeatherData(city = city ?: "Skopje")
     }.value
 
+    val context = LocalContext.current
 
+    val unitList =  settingsViewModel.unitList.collectAsState().value
+
+    var unit by remember {
+        mutableStateOf("Celsius ºC")
+    }
+
+    if (unitList.isNotEmpty()) {
+        unit = unitList[0].unit
+    }
+
+
+    fun saveFavorite(city: String, country: String) {
+        favoriteViewModel.insertFavorite(city, country)
+        Toast.makeText(context, "City saved to favorites!", Toast.LENGTH_LONG).show()
+    }
 
 
     if (weatherData.loading == true) {
         CircularProgressIndicator()
     } else if (weatherData.data != null) {
-        TopWeatherBar(weatherData.data!!, navController)
-
+        TopWeatherBar(weatherData.data!!, navController, ::saveFavorite, unit)
     }
 
 }
@@ -82,7 +108,9 @@ fun HomeScreen(
 @Composable
 fun TopWeatherBar(
     weatherResponse: WeatherResponse,
-    navController: NavController
+    navController: NavController,
+    onSaveFavorite: (String, String) -> Unit,
+    unit: String
 ) {
 
     Scaffold(
@@ -100,6 +128,9 @@ fun TopWeatherBar(
                 onMoreClicked = {
 
                 },
+                onFavoritesClicked = {
+                    onSaveFavorite(weatherResponse.location.name, weatherResponse.location.country)
+                },
                 onSearchClicked = {
                     navController.navigate(Screens.SearchScreen.name)
                 },
@@ -109,14 +140,15 @@ fun TopWeatherBar(
         }
     ) {
         Box(modifier = Modifier.padding(it)) {}
-        Content(weatherResponse)
+        Content(weatherResponse, unit)
     }
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Content(
-    weatherResponse: WeatherResponse
+    weatherResponse: WeatherResponse,
+    unit: String
 ) {
     val conditionCode = weatherResponse.current.condition.code
 
@@ -207,7 +239,7 @@ fun Content(
                 contentPadding = PaddingValues(3.dp)
             ) {
                 items(items = weatherResponse.forecast.forecastday, itemContent = { day ->
-                    WeeklyForecastRow(day)
+                    WeeklyForecastRow(day, unit)
                 })
 
             }

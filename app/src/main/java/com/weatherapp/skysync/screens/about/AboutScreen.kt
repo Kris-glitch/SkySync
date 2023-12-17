@@ -1,8 +1,5 @@
 package com.weatherapp.skysync.screens.about
 
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.weatherapp.skysync.R
-import com.weatherapp.skysync.navigation.Screens
 import com.weatherapp.skysync.widgets.SearchBar
 
 @OptIn(ExperimentalMaterial3Api::class)

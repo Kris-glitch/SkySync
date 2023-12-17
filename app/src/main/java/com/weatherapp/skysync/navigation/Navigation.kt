@@ -10,7 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.weatherapp.skysync.screens.about.AboutScreen
-import com.weatherapp.skysync.screens.favourites.FavouritesScreen
+import com.weatherapp.skysync.screens.favorites.FavoritesScreen
 import com.weatherapp.skysync.screens.home.HomeScreen
 import com.weatherapp.skysync.screens.home.HomeViewModel
 import com.weatherapp.skysync.screens.search.SearchScreen
@@ -46,8 +46,8 @@ fun Navigation() {
         composable(Screens.AboutScreen.name) {
             AboutScreen(navController = navController)
         }
-        composable(Screens.FavouritesScreen.name) {
-            FavouritesScreen(navController = navController)
+        composable(Screens.FavoritesScreen.name) {
+            FavoritesScreen(navController = navController)
         }
         composable(Screens.SettingsScreen.name) {
             SettingsScreen(navController = navController)

@@ -5,6 +5,6 @@ enum class Screens {
     HomeScreen,
     AboutScreen,
     SettingsScreen,
-    FavouritesScreen,
+    FavoritesScreen,
     SearchScreen
 }

@@ -14,6 +14,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
@@ -66,6 +67,7 @@ fun SearchBar(
     enabled: Boolean,
     onBackButtonClicked: () -> Unit = {},
     onMoreClicked: () -> Unit = {},
+    onFavoritesClicked: () -> Unit = {},
     onSearchClicked: () -> Unit = {},
     onValueChanged: (String) -> Unit = {},
     onAction: KeyboardActions = KeyboardActions.Default,
@@ -76,7 +78,10 @@ fun SearchBar(
     var city by rememberSaveable {
         mutableStateOf(title)
     }
-    var showDialog = remember {
+    var favIcon by remember {
+        mutableStateOf(Icons.Default.FavoriteBorder)
+    }
+    val showDialog = remember {
         mutableStateOf(false)
     }
 
@@ -120,7 +125,14 @@ fun SearchBar(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = stringResource(id = R.string.back_arrow))
             } else {
-                Box{}
+                Icon(
+                    modifier = Modifier.clickable {
+                        favIcon = Icons.Default.Favorite
+                        onFavoritesClicked()
+                        favIcon = Icons.Default.FavoriteBorder
+                    },
+                    imageVector = favIcon,
+                    contentDescription = stringResource(id = R.string.back_arrow))
             }
         },
         actions = {
@@ -196,7 +208,7 @@ fun ShowSettingDropDownMenu(showDialog: MutableState<Boolean>, navController: Na
                                 navController.navigate(
                                     when (text) {
                                         "About" -> Screens.AboutScreen.name
-                                        "Favorites" -> Screens.FavouritesScreen.name
+                                        "Favorites" -> Screens.FavoritesScreen.name
                                         else -> Screens.SettingsScreen.name
                                     })
 

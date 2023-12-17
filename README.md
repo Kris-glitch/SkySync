@@ -2,7 +2,7 @@
 
 Sky Sync: Kotlin, Jetpack Compose, Hilt, and More
 
-Sky Sync is an Android weather app that exemplifies modern Android development practices. The app is built using a tech stack that includes Kotlin, Jetpack Compose, Room, Retrofit, and Hilt, showcasing best practices for UI development, dependency injection, API integration, and data persistence.
+Sky Sync is an Android weather app that embodies modern Android development practices, featuring a robust tech stack that includes Kotlin, Jetpack Compose, Room, Retrofit, and Hilt. The app's architecture follows the MVVM pattern, showcasing clear and maintainable code organization.
 
 Key Technologies:
 

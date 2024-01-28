@@ -1,4 +1,4 @@
-# SkySync
+# SkySync - Android Weather App / Kotlin / Jetpack Compose / Hilt / Coroutines / Flows / Retrofit / Room
 
 Sky Sync: Kotlin, Jetpack Compose, Hilt, and More
 
